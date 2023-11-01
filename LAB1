@@ -1,0 +1,157 @@
+#define segA 2
+#define segB 3
+#define segC 4
+#define segD 5
+#define segE 6
+#define segF 7
+#define segG 8
+
+const int buttonPin1 = 10;
+const int buttonPin2 = 11;
+const int buttonPin3 = 12;
+
+int buttonState1 = 0;
+int buttonState2 = 0;
+int buttonState3 = 0;
+int tall = 0;
+
+void setup() {
+  pinMode(buttonPin1, INPUT);
+  pinMode(buttonPin2, INPUT);
+  pinMode(buttonPin3, INPUT);
+
+  for (int i = 2; i <= 8; i++) {
+    pinMode(i, OUTPUT);
+  }
+
+  // Initialiser syv-segment-displayet til å vise 0 ved oppstart
+  visTall(0);
+}
+
+void visTall(int num) {
+  switch (num) {
+    case 0:
+      digitalWrite(segA, HIGH);
+      digitalWrite(segB, HIGH);
+      digitalWrite(segC, HIGH);
+      digitalWrite(segD, HIGH);
+      digitalWrite(segE, HIGH);
+      digitalWrite(segF, HIGH);
+      digitalWrite(segG, LOW);
+      break;
+
+    case 1:
+      digitalWrite(segA, LOW);
+      digitalWrite(segB, HIGH);
+      digitalWrite(segC, HIGH);
+      digitalWrite(segD, LOW);
+      digitalWrite(segE, LOW);
+      digitalWrite(segF, LOW);
+      digitalWrite(segG, LOW);
+      break;
+
+    case 2:
+      digitalWrite(segA, HIGH);
+      digitalWrite(segB, HIGH);
+      digitalWrite(segC, LOW);
+      digitalWrite(segD, HIGH);
+      digitalWrite(segE, HIGH);
+      digitalWrite(segF, LOW);
+      digitalWrite(segG, HIGH);
+      break;
+
+    case 3:
+      digitalWrite(segA, HIGH);
+      digitalWrite(segB, HIGH);
+      digitalWrite(segC, HIGH);
+      digitalWrite(segD, HIGH);
+      digitalWrite(segE, LOW);
+      digitalWrite(segF, LOW);
+      digitalWrite(segG, HIGH);
+      break;
+
+    case 4:
+      digitalWrite(segA, LOW);
+      digitalWrite(segB, HIGH);
+      digitalWrite(segC, HIGH);
+      digitalWrite(segD, LOW);
+      digitalWrite(segE, LOW);
+      digitalWrite(segF, HIGH);
+      digitalWrite(segG, HIGH);
+      break;
+
+    case 5:
+      digitalWrite(segA, HIGH);
+      digitalWrite(segB, LOW);
+      digitalWrite(segC, HIGH);
+      digitalWrite(segD, HIGH);
+      digitalWrite(segE, LOW);
+      digitalWrite(segF, HIGH);
+      digitalWrite(segG, HIGH);
+      break;
+
+    case 6:
+      digitalWrite(segA, HIGH);
+      digitalWrite(segB, LOW);
+      digitalWrite(segC, HIGH);
+      digitalWrite(segD, HIGH);
+      digitalWrite(segE, HIGH);
+      digitalWrite(segF, HIGH);
+      digitalWrite(segG, HIGH);
+      break;
+
+    case 7:
+      digitalWrite(segA, HIGH);
+      digitalWrite(segB, HIGH);
+      digitalWrite(segC, HIGH);
+      digitalWrite(segD, LOW);
+      digitalWrite(segE, LOW);
+      digitalWrite(segF, LOW);
+      digitalWrite(segG, LOW);
+      break;
+
+    case 8:
+      digitalWrite(segA, HIGH);
+      digitalWrite(segB, HIGH);
+      digitalWrite(segC, HIGH);
+      digitalWrite(segD, HIGH);
+      digitalWrite(segE, HIGH);
+      digitalWrite(segF, HIGH);
+      digitalWrite(segG, HIGH);
+      break;
+
+    case 9:
+      digitalWrite(segA, HIGH);
+      digitalWrite(segB, HIGH);
+      digitalWrite(segC, HIGH);
+      digitalWrite(segD, LOW);
+      digitalWrite(segE, LOW);
+      digitalWrite(segF, HIGH);
+      digitalWrite(segG, HIGH);
+      break;
+  }
+}
+
+void loop() {
+  buttonState1 = digitalRead(buttonPin1);
+  buttonState2 = digitalRead(buttonPin2);
+  buttonState3 = digitalRead(buttonPin3);
+
+  if (buttonState1 == HIGH) {
+    tall = (tall + 1) % 10;  // Øk tallet med 1, og begynn på 0 etter 9.
+    visTall(tall);
+    delay(250);  // Vent en kort stund for å unngå flere raske inkrementer.
+  }
+
+  if (buttonState2 == HIGH) {
+    tall = (tall + 2) % 10;  // Øk tallet med 2, og begynn på 0 etter 9.
+    visTall(tall);
+    delay(250);  // Vent en kort stund for å unngå flere raske inkrementer.
+  }
+
+  if (buttonState3 == HIGH) {
+    tall = (tall + 4) % 10;  // Øk tallet med 4, og begynn på 0 etter 9.
+    visTall(tall);
+    delay(250);  // Vent en kort stund for å unngå flere raske inkrementer.
+  }
+}
