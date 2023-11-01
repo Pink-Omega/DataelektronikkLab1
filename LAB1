@@ -1,3 +1,6 @@
+// Input from swithes is digital 10, 11, 12
+
+
 #define segA 2
 #define segB 3
 #define segC 4
